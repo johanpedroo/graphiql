@@ -13,6 +13,7 @@ import { buildClientSchema, GraphQLSchema, parse, print } from 'graphql';
 import { ExecuteButton } from './ExecuteButton';
 import { ToolbarButton } from './ToolbarButton';
 import { ToolbarGroup } from './ToolbarGroup';
+import ToolbarInput from "./ToolbarInput";
 import { ToolbarMenu, ToolbarMenuItem } from './ToolbarMenu';
 import { ToolbarSelect, ToolbarSelectOption } from './ToolbarSelect';
 import { QueryEditor } from './QueryEditor';
@@ -102,6 +103,7 @@ export class GraphiQL extends React.Component {
 
     // Initialize state
     this.state = {
+      auth: this._storage.get('token') || '',
       schema: props.schema,
       query,
       variables,
@@ -254,6 +256,11 @@ export class GraphiQL extends React.Component {
           onClick={this.handleToggleHistory}
           title="Show History"
           label="History"
+        />
+        <ToolbarInput
+          placeholder="Authorization"
+          onChange={this.handleEditAuth}
+          value={this.state.auth}
         />
 
       </GraphiQL.Toolbar>;
@@ -554,7 +561,8 @@ export class GraphiQL extends React.Component {
       query,
       variables: jsonVariables,
       operationName,
-    });
+    }, this.state.auth);
+
 
     if (isPromise(fetch)) {
       // If fetcher returned a Promise, then call the callback when the promise
@@ -946,6 +954,12 @@ export class GraphiQL extends React.Component {
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
   };
+
+  handleEditAuth = (e) => {
+    console.log(e.target.value);
+    this.setState({ auth: e.target.value });
+    this._storage.set('token', e.target.value)
+  };
 }
 
 // Configure the UI by providing this Component as a child of GraphiQL.
@@ -1053,4 +1067,5 @@ function observableToPromise(observable) {
 // Duck-type observable detection.
 function isObservable(value) {
   return typeof value === 'object' && typeof value.subscribe === 'function';
+
 }
