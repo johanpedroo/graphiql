@@ -113,11 +113,10 @@
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(graphQLParams),
-          credentials: 'include',
         };
         if(token)
           options.headers['Authentication'] = 'bearer ' + token;
-        return fetch('/graphql', options).then(function (response) {
+        return fetch('https://kbvh08jcza.execute-api.us-east-1.amazonaws.com/v0/graphql', options).then(function (response) {
           return response.text();
         }).then(function (responseBody) {
           try {
