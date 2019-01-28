@@ -1877,7 +1877,7 @@ var GraphiQL = exports.GraphiQL = function (_React$Component) {
           label: 'History'
         }),
         _react2.default.createElement(_ToolbarInput2.default, {
-          placeholder: 'Authorization',
+          placeholder: 'Authorization token',
           onChange: this.handleEditAuth,
           value: this.state.auth
         })
@@ -2318,6 +2318,7 @@ var GraphiQL = exports.GraphiQL = function (_React$Component) {
 
 
 GraphiQL.propTypes = {
+  auth: _propTypes2.default.bool,
   fetcher: _propTypes2.default.func.isRequired,
   schema: _propTypes2.default.instanceOf(_graphql.GraphQLSchema),
   query: _propTypes2.default.string,

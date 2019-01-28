@@ -19,12 +19,13 @@
 }
 
 .graphiql-container input.toolbar-input {
-  border: none;
   box-sizing: border-box;
   outline: none;
   padding: 6px 24px 8px 20px;
   width: 100%;
-  background-color: transparent;
+  background-color: white;
+  border-radius: 3px;
+  border: 1px solid #d0d0d0;
 }
 
 .graphiql-container {
@@ -74,6 +75,7 @@
 .graphiql-container .toolbar {
   overflow-x: visible;
   display: flex;
+  width: 100%;
 }
 
 .graphiql-container .docExplorerShow,

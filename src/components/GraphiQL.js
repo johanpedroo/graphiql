@@ -44,6 +44,7 @@ const DEFAULT_DOC_EXPLORER_WIDTH = 350;
  */
 export class GraphiQL extends React.Component {
   static propTypes = {
+    auth: PropTypes.bool,
     fetcher: PropTypes.func.isRequired,
     schema: PropTypes.instanceOf(GraphQLSchema),
     query: PropTypes.string,
@@ -258,7 +259,7 @@ export class GraphiQL extends React.Component {
           label="History"
         />
         <ToolbarInput
-          placeholder="Authorization"
+          placeholder="Authorization token"
           onChange={this.handleEditAuth}
           value={this.state.auth}
         />
